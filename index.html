@@ -1,0 +1,154 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIt - Lost and Found</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo">FoundIt</a>
+
+        <nav>
+            <a href="#browse" id="browse">Browse Items</a>
+        </nav>
+
+        <button type="button" class="btn btn-primary" id="openReport">
+            Report an Item
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">LOST SOMETHING? FOUND SOMETHING?</p>
+
+                <h1>Lost it? Let's help you <span>find it.</span></h1>
+
+                <p class="hero-description">
+                    A simple place to report lost belongings and help people
+                    reconnect with items they've misplaced.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#browse" class="btn btn-primary">Find an Item</a>
+
+                    <button type="button" class="btn btn-secondary" id="heroReport">
+                        Report an Item
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="browse-section" id="browse">
+            <div class="section-heading">
+                <p class="eyebrow">SEARCH LISTINGS</p>
+                <h2>Browse Items</h2>
+                <p>Search for an item or browse the available listings.</p>
+            </div>
+
+            <div class="search-controls">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search by item name or location..."
+                    aria-label="Search items"
+                >
+
+                <select id="sortSelect" aria-label="Sort listings">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                </select>
+            </div>
+
+            <div class="filter-controls">
+                <button type="button" class="filter-btn active" data-filter="all">
+                    All Items
+                </button>
+
+                <button type="button" class="filter-btn" data-filter="lost">
+                    Lost Items
+                </button>
+
+                <button type="button" class="filter-btn" data-filter="found">
+                    Found Items
+                </button>
+            </div>
+
+            <div id="listings" class="listings-grid"></div>
+
+            <p id="emptyMessage" class="empty-message">
+                No items to display yet.
+            </p>
+        </section>
+    </main>
+
+    <!-- Report form -->
+    <div class="modal-overlay" id="reportOverlay" hidden>
+        <section class="modal" role="dialog" aria-modal="true"
+            aria-labelledby="reportTitle">
+
+            <div class="modal-header">
+                <h2 id="reportTitle">Report an Item</h2>
+
+                <button type="button" class="close-btn" id="closeReport"
+                    aria-label="Close">×</button>
+            </div>
+
+            <form id="reportForm">
+                <label for="itemType">Report type</label>
+                <select id="itemType" name="type" required>
+                    <option value="lost">I lost an item</option>
+                    <option value="found">I found an item</option>
+                </select>
+
+                <label for="itemName">Item name</label>
+                <input id="itemName" name="name" type="text"
+                    placeholder="Enter the item name" required>
+
+                <label for="itemDescription">Description</label>
+                <textarea id="itemDescription" name="description"
+                    rows="3" placeholder="Describe the item" required></textarea>
+
+                <label for="itemLocation">Location</label>
+                <input id="itemLocation" name="location" type="text"
+                    placeholder="Where was it lost or found?" required>
+
+                <label for="itemDate">Date</label>
+                <input id="itemDate" name="date" type="date" required>
+
+                <label for="itemContact">Contact information</label>
+                <input id="itemContact" name="contact" type="text"
+                    placeholder="Phone number or email" required>
+
+                <button type="submit" class="btn btn-primary submit-btn">
+                    Submit Report
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Item details -->
+    <div class="modal-overlay" id="detailsOverlay" hidden>
+        <section class="modal" role="dialog" aria-modal="true"
+            aria-labelledby="detailsTitle">
+
+            <div class="modal-header">
+                <h2 id="detailsTitle">Item Details</h2>
+
+                <button type="button" class="close-btn" id="closeDetails"
+                    aria-label="Close">×</button>
+            </div>
+
+            <div id="itemDetails"></div>
+        </section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
